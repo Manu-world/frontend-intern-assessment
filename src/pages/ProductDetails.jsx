@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { ShopContext } from "../context/shop-context";
+import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
@@ -16,7 +15,6 @@ const ProductDetails = () => {
     category,
     brand,
   } = state.data;
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
 
   return (
     <div className="flex flex-col items-center">
@@ -40,9 +38,9 @@ const ProductDetails = () => {
         </div>
       </div>
 
-      <div className="w-full flex justify-center mt-5">
+      <div className="flex justify-center w-full mt-5">
         <button
-          className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-300 ease-in-out"
+          className="px-4 py-2 font-semibold text-white transition duration-300 ease-in-out bg-blue-500 rounded-full shadow-md hover:bg-blue-600"
           onClick={() => {
             navigate("/checkout", { state: { data: state.data } });
           }}

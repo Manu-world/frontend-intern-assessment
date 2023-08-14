@@ -2,18 +2,14 @@ import React, { useContext } from "react";
 import { ShopContext } from "../context/shop-context";
 import { Link } from "react-router-dom";
 import { ShoppingCart, House } from "phosphor-react";
-// import "./navbar.css";
 
 export const Navbar = () => {
-  const { cartItems, getTotalCartAmount, checkout } = useContext(ShopContext);
+  const { getTotalCartAmount } = useContext(ShopContext);
   const totalAmount = getTotalCartAmount();
 
   return (
-    <div className="w-full pl-5 h-20 flex justify-between items-center shadow-md fixed bg-gray-200 top-0 z-10">
-      <div
-        className="flex justify-center
-      items-center"
-      >
+    <div className="fixed top-0 z-10 flex items-center justify-between w-full h-20 pl-5 bg-gray-200 shadow-md">
+      <div className="flex items-center justify-center">
         <Link to={"/"}>
           <img
             src="src\assets\sommalife.png"
@@ -21,19 +17,22 @@ export const Navbar = () => {
             className="w-8 rounded-full"
           />
         </Link>
-        <p className="uppercase font-semibold ml-5">Sommalife</p>
+        <p className="ml-5 font-semibold uppercase">Sommalife</p>
       </div>
       <div className="w-[20%] flex items-center justify-around">
-        <Link to="/" className="text-xl font-semibold flex items-center">
+        <Link
+          to="/"
+          className="flex items-center text-xl font-semibold active:bg-gray-100"
+        >
           <House size={32} />
         </Link>
         <Link
           to="/cart"
-          className="relative flex items-center text-xl font-semibold"
+          className="relative flex items-center text-xl font-semibold active:bg-gray-100"
         >
           <ShoppingCart size={32} />
           {totalAmount > 0 ? (
-            <div className="w-4 h-4 rounded-full bg-blue-500 absolute -top-1 -right-1"></div>
+            <div className="absolute w-4 h-4 bg-blue-500 rounded-full -top-1 -right-1"></div>
           ) : (
             ""
           )}
